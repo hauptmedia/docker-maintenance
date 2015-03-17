@@ -11,7 +11,7 @@ ENV         	CASSANDRA_DOWNLOAD_URL	http://www.us.apache.org/dist/cassandra/${CA
 # install dependencies
 RUN		apt-get update -qq && \
 		apt-get upgrade --yes && \
-    		apt-get install -y --no-install-recommends screen cpio bzip2 zsh build-essential vim curl ruby python php5-cli php5-mysql php5-curl pwgen apg mysql-client openssh-server sudo git traceroute nmap dnsutils netcat netcat6 && \
+    		apt-get install -y --no-install-recommends rsync screen cpio bzip2 zsh build-essential vim curl ruby python php5-cli php5-mysql php5-curl pwgen apg mysql-client openssh-server sudo git traceroute nmap dnsutils netcat netcat6 && \
 		apt-get clean autoclean && \
 		apt-get autoremove --yes && \ 
 		rm -rf /var/lib/{apt,dpkg,cache,log}/
