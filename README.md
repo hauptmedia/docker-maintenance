@@ -18,5 +18,5 @@ user2 ssh-rsa AAAAB3NzaC1yc2E.........
 Example usage:
 
 ```bash
-docker run -d -v /path/to/maintenance-users:/etc/maintenance-users hauptmedia/maintenance
+docker run -d -v /path/to/maintenance-users:/etc/maintenance-users -p2022:22 hauptmedia/maintenance
 ```
