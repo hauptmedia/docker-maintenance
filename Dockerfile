@@ -15,8 +15,8 @@ RUN		mkdir /var/run/sshd && \
 
 EXPOSE 22
 
-ADD docker-enrypoint.sh /usr/local/sbin/docker-entrypoint.sh
+ADD docker-entrypoint.sh /usr/local/sbin/docker-entrypoint.sh
 
-ENTRYPOINT "/usr/local/sbin/docker-entrypoint.sh"
+ENTRYPOINT ["/usr/local/sbin/docker-entrypoint.sh"]
 
 CMD ["/usr/sbin/sshd", "-D"]
