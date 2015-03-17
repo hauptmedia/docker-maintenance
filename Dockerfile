@@ -19,4 +19,4 @@ ADD docker-entrypoint.sh /usr/local/sbin/docker-entrypoint.sh
 
 ENTRYPOINT ["/usr/local/sbin/docker-entrypoint.sh"]
 
-CMD ["/usr/sbin/sshd", "-D"]
+CMD ["/usr/sbin/sshd", "-D", "-E", "/proc/self/fd/2"]
