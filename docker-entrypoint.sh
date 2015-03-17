@@ -12,4 +12,9 @@ if [ -f /etc/maintenance-users ]; then
 	done </etc/maintenance-users
 fi
 
+if [ ! -f /etc/ssh/ssh_host_rsa_key.pub ]; then
+	# generate ssh keys if they are not present
+	dpkg-reconfigure openssh-server
+fi
+
 exec "$@"
