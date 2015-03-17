@@ -1,4 +1,4 @@
 build:
-	docker built -t="hauptmedia/maintenance" .
+	docker build -t="hauptmedia/maintenance" .
 
 .PHONY: build
