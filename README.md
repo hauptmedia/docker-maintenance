@@ -76,7 +76,6 @@ Restart=always
 ## SSH server keys
 
 The image will automatically generate new ssh server key files if you don't provide them via volume files.
-
 You should generate the keys once and then provide them as volume files to the image.
 
 ## Included tools
