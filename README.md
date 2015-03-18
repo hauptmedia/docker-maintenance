@@ -8,21 +8,23 @@ provided maintenance tools.
 Provide a `maintenance-users` users file as `/etc/maintenance-users` with the format
 `user` `ssh-key` to enable the ssh login for the specified user
 
-Example maintenance-users file:
+## Example maintenance-users file
 
 ```
 user1 ssh-rsa AAAAB3NzaC1yc2E.........
 user2 ssh-rsa AAAAB3NzaC1yc2E.........
 ```
 
-Example usage (standalone):
+## Example usage (standalone)
 
 ```bash
-docker run -d -v /path/to/maintenance-users:/etc/maintenance-users \
--p2022:22 hauptmedia/maintenance
+docker run -d \
+-v /path/to/maintenance-users:/etc/maintenance-users \
+-p2022:22 \
+hauptmedia/maintenance
 ```
 
-Example usage (unit file):
+## Example usage (unit file)
 
 ```
 [Unit]
@@ -58,3 +60,35 @@ hauptmedia/maintenance
 ExecStop=/usr/bin/docker stop ${NAME}
 Restart=always
 ```
+
+## Included tools
+
+### MySQL
+
+#### MySQL Console
+
+```bash
+mysql -u user -p password -h hostname -P port database
+```
+
+#### Dump MySQL database
+
+```bash
+mysqldump -u user -p password -h hostname -P port database >mysql.dump
+```
+
+### Cassandra
+
+#### CQL console
+
+```bash
+cqlsh -u user -p password -k keyspace hostname port
+``` 
+
+#### See cluster status 
+
+```bash
+nodetool -h hostname status
+```
+
+
