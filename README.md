@@ -22,6 +22,8 @@ user2 ssh-rsa AAAAB3NzaC1yc2E.........
 
 ```bash
 docker run -d \
+-v /var/run/docker.sock:/var/run/docker.sock \
+-v /usr/bin/docker:/usr/bin/docker \
 -v /path/to/maintenance-users:/etc/maintenance-users \
 -p2022:22 \
 hauptmedia/maintenance
