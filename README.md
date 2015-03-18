@@ -73,10 +73,16 @@ ExecStop=/usr/bin/docker stop ${NAME}
 Restart=always
 ```
 
+## SSH server keys
+
+The image will automatically generate new ssh server key files if you don't provide them via volume files.
+
+You should generate the keys once and then provide them as volume files to the image.
+
 ## Included tools
 
-Please note that most of this tools are accessed via a wrapper script that
-actually run the tools from the corresponding docker images.
+Please note that most of these tools are accessed via wrapper scripts which 
+run the executable from their corresponding docker images.
 
 That means you cannot access the local filesystem in these containers. If
 you want to read or write files from the host system use the `/tmp` directory
