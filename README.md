@@ -33,7 +33,7 @@ docker run -d \
 hauptmedia/maintenance
 ```
 
-## Example usage (unit file)
+## Example unit file for CoreOS
 
 ```
 [Unit]
