@@ -5,7 +5,7 @@ A maintenance docker container for CoreOS Clusters.
 It spawns an ssh server which can be used to login and execute the
 provided maintenance tools.
 
-If you provide the `/usr/bin/docker` binary and the `/var/run/docker.sock` from the
+If you provide the `/usr/bin/docker` binary and the `/var/run/docker.sock` socket file from the
 host system this container will be also able to run various tools from other docker images.
 
 If you also specify the `DOCKER_GID` environment variable the maintenance-users will be joined
@@ -80,11 +80,32 @@ actually run the tools from the corresponding docker images.
 
 That means you cannot access the local filesystem in these containers. If
 you want to read or write files from the host system use the `/tmp` directory
-which will be automatically mounted inside the docker conainers.
+or the current working directory which will be automatically mounted inside 
+the docker containers.
+
+### CoreOS
+
+#### fleetctl
+
+Management tool for CoreOS clusters
+
+#### List machines from cluster
+
+```bash
+fleetctl list-machines
+```
+
+#### Inspect status for all running units
+
+```bash
+fleetctl list-units
+```
 
 ### MySQL
 
 #### MySQL Console
+
+Management tools for MySQL databases
 
 ```bash
 mysql -u user -p password -h hostname -P port database
@@ -97,6 +118,8 @@ mysqldump -u user -p password -h hostname -P port database >mysql.dump
 ```
 
 ### Cassandra
+
+Management tools for Apache Cassandra databases
 
 #### CQL console
 
