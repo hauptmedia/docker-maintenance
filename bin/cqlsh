@@ -1,2 +1,3 @@
 #!/bin/sh
-docker run -i -t --rm -v /tmp:/tmp -v $(pwd):/cwd hauptmedia/cassandra /bin/sh -c "cd /cwd && /opt/cassandra/bin/cqlsh $@"
+ARGS=$@
+docker run -i -t --rm -v /tmp:/tmp -v $(pwd):/cwd hauptmedia/cassandra /bin/sh -c "cd /cwd && /opt/cassandra/bin/cqlsh $ARGS"
