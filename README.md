@@ -8,6 +8,9 @@ provided maintenance tools.
 If you provide the `/usr/bin/docker` binary and the `/var/run/docker.sock` from the
 host system this container will be also able to run various tools from other docker images.
 
+If you also specify the `DOCKER_GID` environment variable the maintenance-users will be joined
+to the docker group thus allowing to run docker without being root.
+
 Provide a `maintenance-users` users file as `/etc/maintenance-users` with the format
 `user` `ssh-key` to enable the ssh login for the specified user
 
