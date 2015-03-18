@@ -11,10 +11,10 @@ host system this container will be also able to run various tools from other doc
 If you also specify the `DOCKER_GID` environment variable the maintenance-users will be joined
 to the docker group thus allowing to run docker without being root.
 
+## maintenance-users file
+
 Provide a `maintenance-users` users file as `/etc/maintenance-users` with the format
 `user` `ssh-key` to enable the ssh login for the specified user
-
-## Example maintenance-users file
 
 ```
 user1 ssh-rsa AAAAB3NzaC1yc2E.........
