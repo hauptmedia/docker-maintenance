@@ -5,6 +5,9 @@ A maintenance docker container for CoreOS Clusters.
 It spawns an ssh server which can be used to login and execute the
 provided maintenance tools.
 
+If you provide the `/usr/bin/docker` binary and the `/var/run/docker.sock` from the
+host system this container will be also able to run various tools from other docker images.
+
 Provide a `maintenance-users` users file as `/etc/maintenance-users` with the format
 `user` `ssh-key` to enable the ssh login for the specified user
 
@@ -46,6 +49,8 @@ ExecStartPre=/usr/bin/docker pull hauptmedia/maintenance
 ExecStart=/usr/bin/docker run \
 --name ${NAME} \
 --hostname maintenance \
+-v /var/run/docker.sock:/var/run/docker.sock \
+-v /usr/bin/docker:/usr/bin/docker \
 -v /tmp/${NAME}/maintenance-users:/etc/maintenance-users \
 -v /tmp/${NAME}/ssh_host_dsa_key:/etc/ssh/ssh_host_dsa_key \
 -v /tmp/${NAME}/ssh_host_dsa_key.pub:/etc/ssh/ssh_host_dsa_key.pub \
@@ -62,6 +67,13 @@ Restart=always
 ```
 
 ## Included tools
+
+Please note that most of this tools are accessed via a wrapper script that
+actually run the tools from the corresponding docker images.
+
+That means you cannot access the local filesystem in these containers. If
+you want to read or write files from the host system use the `/tmp` directory
+which will be automatically mounted inside the docker conainers.
 
 ### MySQL
 
