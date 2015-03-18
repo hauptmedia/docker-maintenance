@@ -1,0 +1,24 @@
+#!/bin/sh
+
+IMAGE=$1
+CMD=/bin/bash
+
+if [ -z ${IMAGE} ]; then
+	echo Usage $0 image [cmd] 1>&2
+	exit 1
+fi
+
+shift
+
+if [ -n "$1" ]; then
+	CMD=$@
+fi
+
+ROOT=
+CONTAINER_ID=$(cat /proc/self/cgroup | grep -o  -e "docker-.*.scope" | head -n 1 | sed "s/docker-\(.*\).scope/\\1/")
+if [ -n "$CONTAINER_ID" ]; then
+	ROOT=/var/lib/docker/overlay/${CONTAINER_ID}/upper
+fi
+
+
+docker run -i -t --rm -v ${ROOT}/tmp:/tmp -v ${ROOT}$(pwd):/cwd ${IMAGE} /bin/sh -c "cd /cwd && $CMD" 

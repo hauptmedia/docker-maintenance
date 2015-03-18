@@ -1,3 +1,2 @@
 #!/bin/sh
-ARGS=$@
-docker run -i -t --rm -v /tmp:/tmp -v $(pwd):/cwd hauptmedia/spark-base /bin/sh -c "cd /cwd && /opt/spark/bin/spark-shell $ARGS"
+exec docker-run-cwd hauptmedia/spark-base /opt/spark/bin/spark-shell $@

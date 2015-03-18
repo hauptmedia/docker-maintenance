@@ -1,3 +1,3 @@
 #!/bin/sh
-ARGS=$@
-docker run -i -t --rm -v /tmp:/tmp -v $(pwd):/cwd hauptmedia/cloudconfig /bin/sh -c "cd /cwd && fleetctl $ARGS"
+exec docker-run-cwd hauptmedia/cloudconfig fleetctl $@
+
