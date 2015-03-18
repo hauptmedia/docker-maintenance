@@ -16,6 +16,9 @@ RUN		mkdir /var/run/sshd && \
 		sed -i 's/session\s*required\s*pam_loginuid.so/session optional pam_loginuid.so/g' /etc/pam.d/sshd && \
 		rm /etc/ssh/ssh_host_*
 
+# fix to run /usr/bin/docker binary from CoreOS under Debian/jessie
+RUN		ln -s /lib/x86_64-linux-gnu/libdevmapper.so.1.02.1 /lib/x86_64-linux-gnu/libdevmapper.so.1.02
+
 EXPOSE 22
 
 ADD bin/ /usr/local/bin

@@ -22,8 +22,9 @@ user2 ssh-rsa AAAAB3NzaC1yc2E.........
 
 ```bash
 docker run -d \
+-e DOCKER_GID=$(cat /etc/group| grep docker| cut -d":" -f3) \
 -v /var/run/docker.sock:/var/run/docker.sock \
--v /usr/bin/docker:/usr/bin/docker \
+-v /usr/bin/docker:/usr/bin/docker:ro \
 -v /path/to/maintenance-users:/etc/maintenance-users \
 -p2022:22 \
 hauptmedia/maintenance
@@ -51,8 +52,9 @@ ExecStartPre=/usr/bin/docker pull hauptmedia/maintenance
 ExecStart=/usr/bin/docker run \
 --name ${NAME} \
 --hostname maintenance \
+-e DOCKER_GID=233 \
 -v /var/run/docker.sock:/var/run/docker.sock \
--v /usr/bin/docker:/usr/bin/docker \
+-v /usr/bin/docker:/usr/bin/docker:ro \
 -v /tmp/${NAME}/maintenance-users:/etc/maintenance-users \
 -v /tmp/${NAME}/ssh_host_dsa_key:/etc/ssh/ssh_host_dsa_key \
 -v /tmp/${NAME}/ssh_host_dsa_key.pub:/etc/ssh/ssh_host_dsa_key.pub \
