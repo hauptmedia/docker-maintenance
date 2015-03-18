@@ -122,7 +122,7 @@ mysql -u user -p password -h hostname -P port database
 mysqldump -u user -p password -h hostname -P port database >mysql.dump
 ```
 
-### Cassandra
+### Apache Cassandra
 
 Management tools for Apache Cassandra databases
 
@@ -138,4 +138,33 @@ cqlsh -u user -p password -k keyspace hostname port
 nodetool -h hostname status
 ```
 
+### Apache Spark
 
+Management tools for Apache Spark
+
+#### spark-shell
+
+Spark's shell provides a simple way to learn the API, as well as a powerful tool to analyze data interactively.
+
+See http://spark.apache.org/docs/1.2.0/quick-start.html
+
+```bash
+spark-shell
+```
+
+#### spark-submit
+
+The `spark-submit` script in Spark's bin directory is used to launch applications on a cluster. It can use all of Spark's supported cluster managers through a uniform interface so you don't have to configure your application specially for each one.
+
+See http://spark.apache.org/docs/1.2.0/submitting-applications.html
+
+```bash
+spark-submit \
+  --class <main-class>
+  --master <master-url> \
+  --deploy-mode <deploy-mode> \
+  --conf <key>=<value> \
+  ... # other options
+  <application-jar> \
+  [application-arguments]
+```
