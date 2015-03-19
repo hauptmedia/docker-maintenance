@@ -1,0 +1,2 @@
+#!/bin/sh
+exec docker-run-cwd hauptmedia/kafka /opt/kafka/bin/kafka-run-class.sh kafka.tools.JmxTool $@
