@@ -157,6 +157,11 @@ See https://cwiki.apache.org/confluence/display/KAFKA/System+Tools
 
 Displays the:  Consumer Group, Topic, Partitions, Offset, logSize, Lag, Owner for the specified set of Topics and Consumer Group
 
+```bash
+# print infos about consumer group 0
+kafka-consumer-offset-checker --zookeeper zk.skydns.local --group 0 --broker-info
+```
+
 #### kafka-dump-log-segments
 
 This can print the messages directly from the log files or just verify the indexes correct for the logs
