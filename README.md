@@ -138,6 +138,65 @@ cqlsh -u user -p password -k keyspace hostname port
 nodetool -h hostname status
 ```
 
+### Apache Kafka
+
+System tools for Apache Kafka
+
+See https://cwiki.apache.org/confluence/display/KAFKA/System+Tools
+
+#### kafka-consumer-offset-checker
+
+Displays the:  Consumer Group, Topic, Partitions, Offset, logSize, Lag, Owner for the specified set of Topics and Consumer Group
+
+#### kafka-dump-log-segments
+
+This can print the messages directly from the log files or just verify the indexes correct for the logs
+
+#### kafka-export-zk-offsets
+
+A utility that retrieves the offsets of broker partitions in ZK and prints to an output file in the following format:
+
+#### kafka-get-offset-shell
+
+get offsets for a topic
+
+#### kafka-import-zk-offsets
+
+can import offsets for a topic partitions
+
+#### kafka-jmx-tool
+
+prints metrics via JMX
+
+#### kafka-migration-tool
+
+Migrates a 0.7 broker to 0.8
+
+#### kafka-mirror-maker
+
+Provides mirroring of one Kafka cluster to another
+
+#### kafka-replay-log-producer
+
+Consume from one topic and replay those messages and produce to another topic
+
+#### kafka-simple-consumer-shell
+
+Dumps out consumed messages to the console using the Simple Consumer
+
+#### kafka-state-change-log-merger
+
+A utility that merges the state change logs (possibly obtained from different brokers and over multiple days).
+
+#### kafka-update-offsets-in-zk
+
+A utility that updates the offset of every broker partition to the offset of earliest or latest log segment file, in ZK.
+
+#### kafka-verify-consumer-rebalance
+
+Make sure there is an owner for every partition. A successful rebalancing operation would select an owner for each available partition. 
+This means that for each partition registered under /brokers/topics/[topic]/[broker-id], an owner exists under /consumers/[consumer_group]/owners/[topic]/[broker_id-partition_id]
+
 ### Apache Spark
 
 Management tools for Apache Spark
