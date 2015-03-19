@@ -78,7 +78,7 @@ Restart=always
 The image will automatically generate new ssh server key files if you don't provide them via volume files.
 You should generate the keys once and then provide them as volume files to the image.
 
-## Included tools
+## Included maintenance tools
 
 Please note that most of these tools are accessed via wrapper scripts which 
 run the executable from their corresponding docker images.
@@ -94,10 +94,12 @@ the docker containers.
 
 Management tool for CoreOS clusters
 
-#### List machines from cluster
-
 ```bash
+# List all machines from the cluster
 fleetctl list-machines
+
+# Inspect current status of all unit files
+fleetctl list-units
 ```
 
 #### Inspect status for all running units
