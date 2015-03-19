@@ -2,7 +2,7 @@
 set -e 
 
 if [ -n ${DOCKER_GID} ]; then
-	groupadd -g 233 docker
+	groupadd -g ${DOCKER_GID} docker
 fi
 
 if [ -f /etc/maintenance-users ]; then
