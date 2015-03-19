@@ -100,12 +100,18 @@ fleetctl list-machines
 
 # Inspect current status of all unit files
 fleetctl list-units
-```
 
-#### Inspect status for all running units
+# Submit local unit file to repository
+fleetctl submit cassandra@
 
-```bash
-fleetctl list-units
+# Start a single service
+fleetctl start front-nginx 
+
+# Start service cassandra on 3 machines
+fleetctl start cassandra@{1..3}
+
+# Destroy all 3 services
+fleetctl destroy cassandra@{1..3}
 ```
 
 ### MySQL
