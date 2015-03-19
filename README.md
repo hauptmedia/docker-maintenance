@@ -45,6 +45,7 @@ Requires=docker.service
 Environment="NAME=maintenance"
 TimeoutStartSec=300
 ExecStartPre=/bin/sh -c "\
+test -d /tmp/${NAME} && rm -rf /tmp/${NAME}; \
 mkdir /tmp/${NAME}; \
 /usr/bin/curl --silent https://dl.dropboxusercontent.com/u/xyz/ssh-keys.tar.gz | tar -xz -C /tmp/${NAME}; \
 /usr/bin/curl --silent https://dl.dropboxusercontent.com/u/xyz/maintenance-users -o /tmp/${NAME}/maintenance-users \
