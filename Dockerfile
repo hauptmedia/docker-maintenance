@@ -22,6 +22,7 @@ RUN		ln -s /lib/x86_64-linux-gnu/libdevmapper.so.1.02.1 /lib/x86_64-linux-gnu/li
 
 EXPOSE 22
 
+ADD etc/screenrc /etc/screenrc
 ADD bin/ /usr/local/bin
 ADD docker-entrypoint.sh /usr/local/sbin/docker-entrypoint.sh
 
