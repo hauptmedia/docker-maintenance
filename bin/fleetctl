@@ -16,13 +16,12 @@ if [ -d /etc/ssl/etcd ]; then
 fi
 
 if [ -f /etc/fleetctl.env ]; then
-    DOCKEROPTS="$DOCKEROPTS -v /etc/fleetctl.env:/etc/fleetctl.env:ro"
+    DOCKEROPTS="$DOCKEROPTS --env-file=/etc/fleetctl.env -v /etc/fleetctl.env:/etc/fleetctl.env:ro"
 fi
 
 
 docker run \
 -i -t --rm $DOCKEROPTS \
---env-file=/etc/fleetctl.env \
 -v ${ROOT}/tmp:/tmp \
 -v ${ROOT}$(pwd):/cwd \
 hauptmedia/cloudconfig \
