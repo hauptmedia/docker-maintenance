@@ -1,3 +1,30 @@
 #!/bin/sh
-exec docker-run-cwd hauptmedia/cloudconfig fleetctl $@
+
+ARGS=$@
+
+ROOT=
+CONTAINER_ID=$(cat /proc/self/cgroup | grep -o  -e "docker-.*.scope" | head -n 1 | sed "s/docker-\(.*\).scope/\\1/")
+if [ -n "$CONTAINER_ID" ]; then
+	ROOT=/var/lib/docker/overlay/${CONTAINER_ID}/upper
+fi
+
+
+DOCKEROPTS=
+
+if [ -d /etc/ssl/etcd ]; then
+    DOCKEROPTS="$DOCKEROPTS -v /etc/ssl/etcd:/etc/ssl/etcd:ro"
+fi
+
+if [ -f /etc/fleetctl.env ]; then
+    DOCKEROPTS="$DOCKEROPTS -v /etc/fleetctl.env:/etc/fleetctl.env:ro"
+fi
+
+
+docker run \
+-i -t --rm $DOCKEROPTS \
+--env-file=/etc/fleetctl.env \
+-v ${ROOT}/tmp:/tmp \
+-v ${ROOT}$(pwd):/cwd \
+hauptmedia/cloudconfig \
+/bin/sh -c "cd /cwd && fleetctl $ARGS"
 
