@@ -8,8 +8,11 @@ if [ -n "$CONTAINER_ID" ]; then
 	ROOT=/var/lib/docker/overlay/${CONTAINER_ID}/upper
 fi
 
+if [ -z "$SSH_AUTH_SOCK" ]; then
+    SSH_AUTH_SOCK=/tmp/ssh-agent.sock
+fi
 
-DOCKEROPTS=
+DOCKEROPTS="-v ${ROOT}$(pwd):/cwd -v ${ROOT}/tmp:/tmp"
 
 if [ -d /etc/ssl/etcd ]; then
     DOCKEROPTS="$DOCKEROPTS -v /etc/ssl/etcd:/etc/ssl/etcd:ro"
@@ -19,11 +22,12 @@ if [ -f /etc/fleetctl.env ]; then
     DOCKEROPTS="$DOCKEROPTS --env-file=/etc/fleetctl.env -v /etc/fleetctl.env:/etc/fleetctl.env:ro"
 fi
 
+if [ -n "$SSH_AUTH_SOCK" ]; then
+    DOCKEROPTS="$DOCKEROPTS -e SSH_AUTH_SOCK=${SSH_AUTH_SOCK} -v ${SSH_AUTH_SOCK}:${SSH_AUTH_SOCK}"
+fi
 
 docker run \
 -i -t --rm $DOCKEROPTS \
--v ${ROOT}/tmp:/tmp \
--v ${ROOT}$(pwd):/cwd \
 hauptmedia/cloudconfig \
 /bin/sh -c "cd /cwd && fleetctl $ARGS"
 
