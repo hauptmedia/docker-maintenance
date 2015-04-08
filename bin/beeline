@@ -1,0 +1,2 @@
+#!/bin/sh
+exec docker-run-cwd hauptmedia/spark-base /opt/spark/bin/beeline $@
