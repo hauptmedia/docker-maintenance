@@ -29,5 +29,5 @@ fi
 docker run \
 -i -t --rm $DOCKEROPTS \
 hauptmedia/cloudconfig \
-/bin/sh -c "cd /cwd && fleetctl $ARGS"
+/bin/sh -c "cd /cwd && fleetctl --experimental-api=false $ARGS"
 
