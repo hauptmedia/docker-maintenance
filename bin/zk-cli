@@ -1,0 +1,2 @@
+#!/bin/sh
+exec docker-run-cwd hauptmedia/zookeeper bin/zkCli.sh $@
